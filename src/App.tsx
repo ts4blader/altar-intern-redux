@@ -1,27 +1,14 @@
-import React from "react";
-import { useAppSelector, useAppDispatch } from "./states/hooks";
-import { addUser, removeUser } from "./states/slices/usersSlice";
+import Header from "./components/Header";
+import AddForm from "./components/AddForm";
+import UserList from "./components/UserList";
+import "./style.css";
 
 function App() {
-  const users = useAppSelector((state) => state.users);
-  const dispatch = useAppDispatch();
   return (
     <div className="App">
-      <button
-        onClick={() =>
-          dispatch(addUser({ id: 1, name: "tris", email: "tris@gmail.com" }))
-        }
-      >
-        Add user
-      </button>
-      <button onClick={() => dispatch(removeUser(1))}>Remove user</button>
-      <button onClick={() => console.log(users)}>Show</button>
-
-      <ul>
-        {users.map((item) => (
-          <li>{`Name: ${item.name}, email: ${item.email}`}</li>
-        ))}
-      </ul>
+      <Header />
+      <AddForm />
+      <UserList />
     </div>
   );
 }

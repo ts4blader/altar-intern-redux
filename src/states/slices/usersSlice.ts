@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 
-type User = {
+export type User = {
     id: number
     name: string
     email: string
@@ -19,9 +19,12 @@ export const usersSlice = createSlice({
         removeUser: (state, action: PayloadAction<number>) => {
             return state.filter(item => item.id !== action.payload)
         },
+        setUsers: (state, action: PayloadAction<User[]>) => {
+            return action.payload
+        },
     }
 })
 
-export const {addUser, removeUser} = usersSlice.actions
+export const {addUser, removeUser, setUsers} = usersSlice.actions
 export const selectUsers = (state: RootState) => state.users
 export default usersSlice.reducer
