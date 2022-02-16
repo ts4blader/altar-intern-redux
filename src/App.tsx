@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useAppSelector, useAppDispatch } from "./states/hooks";
+import { addUser, removeUser } from "./states/slices/usersSlice";
 
 function App() {
+  const users = useAppSelector((state) => state.users);
+  const dispatch = useAppDispatch();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button
+        onClick={() =>
+          dispatch(addUser({ id: 1, name: "tris", email: "tris@gmail.com" }))
+        }
+      >
+        Add user
+      </button>
+      <button onClick={() => dispatch(removeUser(1))}>Remove user</button>
+      <button onClick={() => console.log(users)}>Show</button>
+
+      <ul>
+        {users.map((item) => (
+          <li>{`Name: ${item.name}, email: ${item.email}`}</li>
+        ))}
+      </ul>
     </div>
   );
 }
