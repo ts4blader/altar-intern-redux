@@ -58,6 +58,7 @@ input, button{
 /* ------------ user list ----------- */
 
 .user-list{
+    padding: 1em;
     list-style: none;
     max-width: 100rem;
     min-height: 50vh;

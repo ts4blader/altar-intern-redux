@@ -11,7 +11,7 @@ function AddForm() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(addUser({ id: users.length, name, email }));
+    dispatch(addUser({ id: users.length + 1, name, email }));
   };
 
   return (
@@ -21,12 +21,14 @@ function AddForm() {
         placeholder="name"
         value={name}
         onChange={({ target }) => setName(target.value)}
+        required
       />
       <input
         type="email"
         placeholder="email"
         value={email}
         onChange={({ target }) => setEmail(target.value)}
+        required
       />
       <button type="submit">Submit</button>
     </form>

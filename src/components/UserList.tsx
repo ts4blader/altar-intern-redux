@@ -1,10 +1,20 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../states/hooks";
 import { removeUser, setUsers } from "../states/slices/usersSlice";
+import { getAll } from "../firebase/utils";
 
 function UserList() {
   const users = useAppSelector((state) => state.users);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const getData = async () => {
+      const result = await getAll();
+      dispatch(setUsers(result));
+    };
+
+    getData();
+  }, []);
 
   return (
     <ul className="user-list">
